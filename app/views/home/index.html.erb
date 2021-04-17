@@ -1,6 +1,27 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="album py-5">
+    <div class="container">
 
-<% @giphys.each do |g| %>
-  <%= image_tag g['data']['images']['fixed_height_small']['url'] %>
-<% end %>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <% @giphys.each do |g| %>
+          <div class="col">
+            <div class="card shadow-sm">
+              <%= image_tag g['data']['images']['fixed_height_small']['url'], class: "bd-placeholder-img card-img-top", role: "img" %>
+
+              <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-dark">More Infos</button>
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+
+          </div>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
