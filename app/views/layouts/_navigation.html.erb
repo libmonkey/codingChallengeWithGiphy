@@ -2,6 +2,10 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <%= link_to "Rails Bootstrap", root_path, class: 'navbar-brand' %>
+      <%= form_tag(home_index_path, method: :get, class: 'd-flex') do %>
+        <%= text_field_tag(:search_tag, params[:search_tag], class: 'form-control me-2') %>
+        <%= submit_tag("Suche", class: 'btn btn-outline-light') %>
+      <% end %>
     </div>
   </nav>
 </div>
