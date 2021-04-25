@@ -20,7 +20,7 @@ module HomeHelper
   def HomeHelper.giphy_search(search)
     giphys = Array.new
     uri = URI("http://api.giphy.com/v1/gifs/search")
-    params = {api_key: Rails.application.credentials.giphy_api_key, q: "hallo" , limit: 20}
+    params = {api_key: Rails.application.credentials.giphy_api_key, q: search , limit: 20}
     uri.query = URI.encode_www_form(params)
 
     response = self.api_request(uri)
