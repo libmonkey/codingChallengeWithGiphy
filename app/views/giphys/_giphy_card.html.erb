@@ -1,10 +1,10 @@
 <div class="col">
   <div class="card shadow-sm">
-    <%= image_tag giphy['data']['images']['preview_gif']['url'], class: "bd-placeholder-img card-img-top", role: "img" %>
+    <%= image_tag giphy['images']['original']['url'].to_s, class: "bd-placeholder-img card-img-top", role: "img" %>
 
     <div class="card-body">
       <p class="card-text">
-        <%= giphy['data']['title'] %>
+        <%= giphy['title'] %>
       </p>
     </div>
   </div>
