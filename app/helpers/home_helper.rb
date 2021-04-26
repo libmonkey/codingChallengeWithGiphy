@@ -11,7 +11,7 @@ module HomeHelper
     giphys = Array.new
 
     response.each do |giphy|
-      giphys << giphy["data"]
+      giphys << Giphy.new(giphy["data"])
     end
 
     return giphys
@@ -28,7 +28,7 @@ module HomeHelper
     giphys = Array.new
 
     response.first["data"].each do |giphy|
-      giphys << giphy
+      giphys << Giphy.new(giphy)
     end
 
     return giphys
@@ -44,7 +44,6 @@ module HomeHelper
 
       number_of_requests.times do
         response = http.request(request)
-
         giphys << JSON.parse(response.body)
       end
     end
