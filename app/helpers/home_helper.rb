@@ -1,6 +1,6 @@
 module HomeHelper
 
-  def HomeHelper.giphy_random_api()
+  def giphy_random_api()
     giphys = Array.new
     uri = URI("http://api.giphy.com/v1/gifs/random")
     params = {api_key: Rails.application.credentials.giphy_api_key}
@@ -17,26 +17,32 @@ module HomeHelper
     return giphys
   end
 
-  def HomeHelper.giphy_search(search)
+  def giphy_search(search, offset = 0)
     giphys = Array.new
     uri = URI("http://api.giphy.com/v1/gifs/search")
-    params = {api_key: Rails.application.credentials.giphy_api_key, q: search , limit: 20}
+    params = {api_key: Rails.application.credentials.giphy_api_key,
+      q: search ,
+      limit: 20,
+      offset: offset
+    }
     uri.query = URI.encode_www_form(params)
 
     response = self.api_request(uri)
 
     giphys = Array.new
-
     response.first["data"].each do |giphy|
       giphys << Giphy.new(giphy)
     end
 
-    return giphys
+    giphySearch = GiphySearch.new(response.first["pagination"])
+    giphySearch.giphys = giphys
+
+    return giphySearch
   end
 
   private
 
-  def self.api_request(uri, number_of_requests = 1)
+  def api_request(uri, number_of_requests = 1)
     giphys = Array.new
 
     Net::HTTP.start(uri.host, uri.port) do |http|

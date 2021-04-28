@@ -5,6 +5,12 @@
           <%= render partial: 'giphys/giphy_card', collection: @giphys, as: :giphy %>
       </div>
     </div>
+
+    <div class="container">
+      <nav aria-label="Page navigation example" >
+        <%= will_paginate @giphys, renderer: BootstrapPagination::Rails %>
+      </nav>
+    </div>
 </div>
 
 <%= render partial: 'giphys/giphy_modal', collection: @giphys, as: :giphy %>
